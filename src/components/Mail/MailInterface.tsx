@@ -72,9 +72,9 @@ export const MailInterface = () => {
   ];
 
   return (
-    <div className="flex h-[calc(100vh-4rem)] bg-background">
-      {/* Sidebar */}
-      <div className="w-64 border-r border-border bg-card/30 p-4">
+    <div className="flex flex-col lg:flex-row h-[calc(100vh-4rem)] bg-background">
+      {/* Sidebar - Hidden on mobile, shown as drawer */}
+      <div className="hidden lg:block lg:w-64 border-r border-border bg-card/30 p-4">
         <Button className="w-full mb-6 glow">
           <Plus className="w-4 h-4 mr-2" />
           Compose
@@ -100,10 +100,31 @@ export const MailInterface = () => {
         </div>
       </div>
 
+      {/* Mobile Folder Bar */}
+      <div className="lg:hidden flex overflow-x-auto p-2 border-b border-border bg-card/30 space-x-2">
+        {folders.map((folder) => (
+          <Button
+            key={folder.id}
+            variant={selectedFolder === folder.id ? "secondary" : "ghost"}
+            size="sm"
+            className="flex-shrink-0"
+            onClick={() => setSelectedFolder(folder.id)}
+          >
+            <folder.icon className="w-4 h-4 mr-2" />
+            {folder.label}
+            {folder.count > 0 && (
+              <Badge variant="secondary" className="ml-2 h-4 w-4 flex items-center justify-center p-0 text-xs">
+                {folder.count}
+              </Badge>
+            )}
+          </Button>
+        ))}
+      </div>
+
       {/* Email List */}
-      <div className="w-96 border-r border-border bg-card/20">
+      <div className="w-full lg:w-96 border-r border-border bg-card/20 flex flex-col">
         {/* Search and Filter */}
-        <div className="p-4 border-b border-border">
+        <div className="p-3 lg:p-4 border-b border-border">
           <div className="relative mb-3">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
             <input
@@ -123,20 +144,20 @@ export const MailInterface = () => {
         </div>
 
         {/* Email List */}
-        <div className="overflow-y-auto">
+        <div className="flex-1 overflow-y-auto">
           {emails.map((email) => (
             <div
               key={email.id}
-              className={`p-4 border-b border-border cursor-pointer hover:bg-muted/30 transition-colors ${
+              className={`p-3 lg:p-4 border-b border-border cursor-pointer hover:bg-muted/30 transition-colors ${
                 selectedMail === email.id ? 'bg-muted/50' : ''
               } ${email.unread ? 'font-medium' : ''}`}
               onClick={() => setSelectedMail(email.id)}
             >
               <div className="flex items-start justify-between mb-1">
-                <span className={`text-sm ${email.unread ? 'font-semibold' : ''}`}>
+                <span className={`text-sm ${email.unread ? 'font-semibold' : ''} truncate`}>
                   {email.from}
                 </span>
-                <div className="flex items-center space-x-1">
+                <div className="flex items-center space-x-1 flex-shrink-0 ml-2">
                   <span className="text-xs text-muted-foreground">
                     {email.time}
                   </span>
@@ -145,7 +166,7 @@ export const MailInterface = () => {
                   )}
                 </div>
               </div>
-              <h4 className={`text-sm mb-1 ${email.unread ? 'font-medium' : ''}`}>
+              <h4 className={`text-sm mb-1 ${email.unread ? 'font-medium' : ''} line-clamp-1`}>
                 {email.subject}
               </h4>
               <p className="text-xs text-muted-foreground line-clamp-2">
@@ -165,7 +186,7 @@ export const MailInterface = () => {
       </div>
 
       {/* Email Content */}
-      <div className="flex-1 bg-background">
+      <div className="flex-1 bg-background hidden lg:block">
         {selectedMail ? (
           <div className="h-full flex flex-col">
             {/* Email Header */}
@@ -230,22 +251,77 @@ export const MailInterface = () => {
             </div>
 
             {/* Reply Section */}
-            <div className="p-6 border-t border-border">
-              <div className="flex space-x-2">
-                <Button variant="default">Reply</Button>
-                <Button variant="outline">Reply All</Button>
-                <Button variant="outline">Forward</Button>
+            <div className="p-4 lg:p-6 border-t border-border">
+              <div className="flex flex-col sm:flex-row gap-2">
+                <Button variant="default" className="flex-1">Reply</Button>
+                <Button variant="outline" className="flex-1">Reply All</Button>
+                <Button variant="outline" className="flex-1">Forward</Button>
               </div>
             </div>
           </div>
         ) : (
-          <div className="h-full flex items-center justify-center">
+          <div className="h-full flex items-center justify-center p-4">
             <div className="text-center">
-              <Inbox className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-              <h3 className="text-lg font-medium mb-2">Select an email</h3>
-              <p className="text-muted-foreground">
+              <Inbox className="w-12 h-12 lg:w-16 lg:h-16 text-muted-foreground mx-auto mb-4" />
+              <h3 className="text-base lg:text-lg font-medium mb-2">Select an email</h3>
+              <p className="text-sm lg:text-base text-muted-foreground">
                 Choose an email from your inbox to read its contents
               </p>
+            </div>
+          </div>
+        )}
+        
+        {/* Mobile Email View */}
+        {selectedMail && (
+          <div className="lg:hidden fixed inset-0 bg-background z-50 flex flex-col">
+            {/* Mobile Header */}
+            <div className="p-4 border-b border-border flex items-center justify-between">
+              <Button variant="ghost" size="sm" onClick={() => setSelectedMail(null)}>
+                ← Back
+              </Button>
+              <div className="flex items-center space-x-2">
+                <Button variant="ghost" size="sm">
+                  <Star className="w-4 h-4" />
+                </Button>
+                <Button variant="ghost" size="sm">
+                  <Trash2 className="w-4 h-4" />
+                </Button>
+              </div>
+            </div>
+            
+            {/* Mobile Email Content */}
+            <div className="flex-1 overflow-y-auto p-4">
+              <h2 className="text-lg font-semibold mb-4">
+                Your Steam Account Credits are Ready!
+              </h2>
+              <div className="text-sm text-muted-foreground mb-4">
+                <div>From: gaming@store.com</div>
+                <div>2 minutes ago</div>
+              </div>
+              
+              <Card className="glass">
+                <CardContent className="p-4">
+                  <div className="space-y-4 text-sm">
+                    <p>Hello,</p>
+                    <p>Great news! Your Steam account credits are now available.</p>
+                    <div className="bg-muted/30 p-3 rounded-lg">
+                      <div><strong>Credit Amount:</strong> $50.00</div>
+                      <div><strong>Account ID:</strong> #GS789456123</div>
+                    </div>
+                    <Button className="w-full glow">
+                      Visit Gaming Store
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+            
+            {/* Mobile Reply Section */}
+            <div className="p-4 border-t border-border">
+              <div className="flex gap-2">
+                <Button variant="default" className="flex-1">Reply</Button>
+                <Button variant="outline" className="flex-1">Forward</Button>
+              </div>
             </div>
           </div>
         )}

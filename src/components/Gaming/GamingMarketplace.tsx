@@ -89,21 +89,21 @@ export const GamingMarketplace = () => {
         >
           <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/70 to-background/90" />
         </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-24">
           <div className="text-center">
-            <h1 className="text-5xl font-bold text-gradient mb-6 animate-fade-in">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gradient mb-6 animate-fade-in">
               Premium Gaming Accounts
             </h1>
-            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto animate-slide-up">
+            <p className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto animate-slide-up">
               Discover verified gaming accounts with exclusive content, achievements, and premium features
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up">
               <Button size="lg" className="glow">
-                <Gamepad2 className="w-5 h-5 mr-2" />
+                <Gamepad2 className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 Browse Accounts
               </Button>
               <Button variant="outline" size="lg">
-                <Shield className="w-5 h-5 mr-2" />
+                <Shield className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 Verification Process
               </Button>
             </div>
@@ -115,12 +115,12 @@ export const GamingMarketplace = () => {
         {/* Categories */}
         <div className="mb-12">
           <h2 className="text-2xl font-bold mb-6">Browse by Platform</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 lg:gap-4">
             {categories.map((category, index) => (
               <Card key={index} className="glass hover:glow transition-all duration-300 cursor-pointer">
-                <CardContent className="p-4 text-center">
-                  <div className="text-2xl mb-2">{category.icon}</div>
-                  <h3 className="font-medium text-sm mb-1">{category.name}</h3>
+                <CardContent className="p-3 lg:p-4 text-center">
+                  <div className="text-xl lg:text-2xl mb-2">{category.icon}</div>
+                  <h3 className="font-medium text-xs lg:text-sm mb-1">{category.name}</h3>
                   <p className="text-xs text-muted-foreground">{category.count} accounts</p>
                 </CardContent>
               </Card>
@@ -138,7 +138,7 @@ export const GamingMarketplace = () => {
             </Button>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
             {featuredGames.map((game) => (
               <Card key={game.id} className="glass hover:glow-strong transition-all duration-300 group">
                 <CardHeader>
@@ -209,7 +209,7 @@ export const GamingMarketplace = () => {
         </div>
 
         {/* Stats Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6 mb-12">
           <Card className="glass text-center">
             <CardContent className="p-6">
               <Trophy className="w-12 h-12 text-yellow-500 mx-auto mb-4" />

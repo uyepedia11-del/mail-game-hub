@@ -100,21 +100,21 @@ export const BlogSection = () => {
         >
           <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/70 to-background/90" />
         </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-24">
           <div className="text-center">
-            <h1 className="text-5xl font-bold text-gradient mb-6 animate-fade-in">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gradient mb-6 animate-fade-in">
               Gaming Insights & Articles
             </h1>
-            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto animate-slide-up">
+            <p className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto animate-slide-up">
               Stay updated with the latest gaming trends, security tips, and industry insights
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up">
               <Button size="lg" className="glow">
-                <BookOpen className="w-5 h-5 mr-2" />
+                <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 Read Latest Articles
               </Button>
               <Button variant="outline" size="lg">
-                <TrendingUp className="w-5 h-5 mr-2" />
+                <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 Trending Now
               </Button>
             </div>
@@ -123,13 +123,13 @@ export const BlogSection = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
           {/* Main Content */}
           <div className="lg:col-span-3">
             {/* Featured Articles */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">Featured Articles</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="mb-8 lg:mb-12">
+              <h2 className="text-xl lg:text-2xl font-bold mb-4 lg:mb-6">Featured Articles</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
                 {featuredArticles.map((article) => (
                   <Card key={article.id} className="glass hover:glow-strong transition-all duration-300 group overflow-hidden">
                     <div className="relative">
@@ -151,8 +151,8 @@ export const BlogSection = () => {
                       </Badge>
                     </div>
                     
-                    <CardHeader>
-                      <h3 className="text-lg font-semibold group-hover:text-gradient transition-all duration-300 line-clamp-2">
+                    <CardHeader className="p-3 lg:p-6">
+                      <h3 className="text-base lg:text-lg font-semibold group-hover:text-gradient transition-all duration-300 line-clamp-2">
                         {article.title}
                       </h3>
                       <p className="text-sm text-muted-foreground line-clamp-3">
@@ -160,12 +160,12 @@ export const BlogSection = () => {
                       </p>
                     </CardHeader>
 
-                    <CardContent>
-                      <div className="flex items-center justify-between text-xs text-muted-foreground mb-4">
-                        <div className="flex items-center space-x-4">
+                    <CardContent className="p-3 lg:p-6 pt-0">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-xs text-muted-foreground mb-4 gap-2">
+                        <div className="flex items-center space-x-3">
                           <div className="flex items-center">
                             <User className="w-3 h-3 mr-1" />
-                            {article.author}
+                            <span className="truncate">{article.author}</span>
                           </div>
                           <div className="flex items-center">
                             <Calendar className="w-3 h-3 mr-1" />
@@ -216,7 +216,7 @@ export const BlogSection = () => {
           </div>
 
           {/* Sidebar */}
-          <div className="space-y-6">
+          <div className="space-y-4 lg:space-y-6">
             {/* Categories */}
             <Card className="glass">
               <CardHeader>
