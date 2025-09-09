@@ -185,6 +185,52 @@ export default function Auth() {
             </Button>
           </div>
 
+          {/* Test Credentials */}
+          <div className="mt-6 p-4 bg-muted/30 rounded-lg border border-border">
+            <h4 className="text-sm font-medium mb-3 flex items-center">
+              🧪 Test Credentials
+            </h4>
+            <div className="space-y-2 text-xs">
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">Email:</span>
+                <span className="font-mono bg-background px-2 py-1 rounded">test@mailhub.com</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">Password:</span>
+                <span className="font-mono bg-background px-2 py-1 rounded">password123</span>
+              </div>
+            </div>
+            <div className="flex space-x-2 mt-3">
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                className="flex-1 text-xs"
+                onClick={() => {
+                  setEmail("test@mailhub.com");
+                  setPassword("password123");
+                }}
+              >
+                Fill Test User
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                className="flex-1 text-xs"
+                onClick={() => {
+                  setEmail("admin@mailhub.com");
+                  setPassword("admin123");
+                }}
+              >
+                Fill Admin
+              </Button>
+            </div>
+            <p className="text-xs text-muted-foreground mt-2">
+              Click "Fill Test User" then {isLogin ? "Sign In" : "Sign Up first, then Sign In"}
+            </p>
+          </div>
+
           {/* Gaming Promotion */}
           <div className="mt-6 p-4 bg-gradient-to-r from-primary/10 to-accent/10 rounded-lg border border-primary/20">
             <div className="flex items-center space-x-3">
