@@ -22,7 +22,6 @@ export const MailInterface = () => {
 
   const folders = [
     { id: "inbox", label: "Inbox", icon: Inbox, count: 12 },
-    { id: "sent", label: "Sent", icon: Send, count: 0 },
     { id: "starred", label: "Starred", icon: Star, count: 3 },
     { id: "archive", label: "Archive", icon: Archive, count: 0 },
     { id: "trash", label: "Trash", icon: Trash2, count: 0 },
@@ -75,10 +74,19 @@ export const MailInterface = () => {
     <div className="flex flex-col lg:flex-row h-[calc(100vh-4rem)] bg-background">
       {/* Sidebar - Hidden on mobile, shown as drawer */}
       <div className="hidden lg:block lg:w-64 border-r border-border bg-card/30 p-4">
-        <Button className="w-full mb-6 glow">
-          <Plus className="w-4 h-4 mr-2" />
-          Compose
-        </Button>
+        {/* Gaming Promotion Card */}
+        <div className="mb-6 p-4 bg-gradient-to-r from-primary/10 to-accent/10 rounded-lg border border-primary/20">
+          <h3 className="text-sm font-semibold mb-2 flex items-center">
+            <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
+            Gaming Store
+          </h3>
+          <p className="text-xs text-muted-foreground mb-3">
+            Premium gaming accounts & credits available
+          </p>
+          <Button size="sm" variant="outline" className="w-full text-xs">
+            Browse Accounts
+          </Button>
+        </div>
         
         <div className="space-y-2">
           {folders.map((folder) => (
@@ -250,12 +258,22 @@ export const MailInterface = () => {
               </Card>
             </div>
 
-            {/* Reply Section */}
+            {/* Actions Section - Read Only */}
             <div className="p-4 lg:p-6 border-t border-border">
               <div className="flex flex-col sm:flex-row gap-2">
-                <Button variant="default" className="flex-1">Reply</Button>
-                <Button variant="outline" className="flex-1">Reply All</Button>
-                <Button variant="outline" className="flex-1">Forward</Button>
+                <Button variant="outline" className="flex-1">Mark as Read</Button>
+                <Button variant="outline" className="flex-1">Archive</Button>
+                <Button variant="outline" className="flex-1">Delete</Button>
+              </div>
+              
+              {/* Gaming CTA */}
+              <div className="mt-4 p-3 bg-gradient-to-r from-primary/5 to-accent/5 rounded-lg border border-primary/10">
+                <p className="text-xs text-muted-foreground mb-2">
+                  🎮 Interested in gaming? Check our marketplace
+                </p>
+                <Button size="sm" variant="ghost" className="text-xs">
+                  View Gaming Accounts →
+                </Button>
               </div>
             </div>
           </div>
@@ -316,11 +334,21 @@ export const MailInterface = () => {
               </Card>
             </div>
             
-            {/* Mobile Reply Section */}
+            {/* Mobile Actions Section */}
             <div className="p-4 border-t border-border">
-              <div className="flex gap-2">
-                <Button variant="default" className="flex-1">Reply</Button>
-                <Button variant="outline" className="flex-1">Forward</Button>
+              <div className="flex gap-2 mb-3">
+                <Button variant="outline" className="flex-1">Archive</Button>
+                <Button variant="outline" className="flex-1">Delete</Button>
+              </div>
+              
+              {/* Mobile Gaming CTA */}
+              <div className="p-3 bg-gradient-to-r from-primary/5 to-accent/5 rounded-lg border border-primary/10">
+                <p className="text-xs text-muted-foreground mb-2">
+                  🎮 Gaming accounts available
+                </p>
+                <Button size="sm" variant="ghost" className="w-full text-xs">
+                  Browse Marketplace →
+                </Button>
               </div>
             </div>
           </div>

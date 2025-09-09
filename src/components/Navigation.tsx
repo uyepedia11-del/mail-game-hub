@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useAuth } from "@/hooks/useAuth";
 import { 
   Mail, 
   Gamepad2, 
@@ -9,7 +10,8 @@ import {
   Bell, 
   Settings,
   User,
-  Menu
+  Menu,
+  LogOut
 } from "lucide-react";
 
 interface NavigationProps {
@@ -19,6 +21,7 @@ interface NavigationProps {
 
 export const Navigation = ({ activeTab, onTabChange }: NavigationProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, signOut } = useAuth();
 
   const navItems = [
     { id: "mail", label: "Mail", icon: Mail, count: 12 },
@@ -81,9 +84,14 @@ export const Navigation = ({ activeTab, onTabChange }: NavigationProps) => {
             <Button variant="ghost" size="sm">
               <Settings className="w-4 h-4" />
             </Button>
-            <Button variant="ghost" size="sm">
-              <User className="w-4 h-4" />
-            </Button>
+            <div className="flex items-center space-x-2">
+              <span className="text-sm text-muted-foreground hidden sm:block">
+                {user?.email}
+              </span>
+              <Button variant="ghost" size="sm" onClick={signOut}>
+                <LogOut className="w-4 h-4" />
+              </Button>
+            </div>
           </div>
 
           {/* Mobile menu button */}
