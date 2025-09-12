@@ -71,7 +71,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       const data = await response.json();
 
-      if (response.ok && data.token) {
+      if (response.ok && data.success && data.token) {
         localStorage.setItem("authToken", data.token);
         setUser({ 
           id: data.user?.id || "1", 
@@ -82,7 +82,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       } else {
         return { 
           success: false, 
-          error: data.message || "Login failed. Please check your credentials." 
+          error: data.message || "Invalid username or password. Please check your credentials." 
         };
       }
     } catch (error) {
