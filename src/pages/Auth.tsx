@@ -160,40 +160,6 @@ export default function Auth() {
               )}
             </Button>
           </form>
-
-          {/* Test Credentials */}
-          <div className="mt-6 p-4 bg-muted/30 rounded-lg border border-border animate-fade-in">
-            <h4 className="text-sm font-medium mb-3 flex items-center">
-              🧪 Demo Credentials
-            </h4>
-            <div className="space-y-2 text-xs">
-              <div className="flex justify-between items-center">
-                <span className="text-muted-foreground">Email:</span>
-                <span className="font-mono bg-background px-2 py-1 rounded">test@akunstarter.com</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-muted-foreground">Password:</span>
-                <span className="font-mono bg-background px-2 py-1 rounded">test123</span>
-              </div>
-            </div>
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              className="w-full mt-3 text-xs transition-all duration-200 hover:scale-[1.02]"
-              onClick={() => {
-                setUsername("test@akunstarter.com");
-                setPassword("test123");
-                setEmailError("");
-              }}
-              disabled={loading}
-            >
-              Fill Demo Credentials
-            </Button>
-            <p className="text-xs text-muted-foreground mt-2">
-              Use these credentials to test the interface
-            </p>
-          </div>
         </CardContent>
       </Card>
     </div>
