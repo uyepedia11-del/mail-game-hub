@@ -6,6 +6,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useApiAuth";
 import Inbox from "./pages/Inbox";
 import Auth from "./pages/Auth";
+import Blog from "./pages/Blog";
+import Store from "./pages/Store";
+import Community from "./pages/Community";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -21,6 +24,9 @@ const App = () => (
             <Route path="/" element={<Auth />} />
             <Route path="/login" element={<Auth />} />
             <Route path="/inbox" element={<Inbox />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/store" element={<Store />} />
+            <Route path="/community" element={<Community />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
