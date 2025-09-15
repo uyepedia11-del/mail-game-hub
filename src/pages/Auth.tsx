@@ -160,6 +160,34 @@ export default function Auth() {
               )}
             </Button>
           </form>
+
+          {/* Footer Links */}
+          <div className="mt-6 pt-4 border-t border-border">
+            <div className="flex justify-center space-x-4 mb-4">
+              <a 
+                href="/blog" 
+                className="text-sm text-muted-foreground hover:text-primary transition-colors"
+              >
+                Blog
+              </a>
+              <span className="text-muted-foreground">•</span>
+              <a 
+                href="/store" 
+                className="text-sm text-muted-foreground hover:text-primary transition-colors"
+              >
+                Store
+              </a>
+            </div>
+            <p className="text-xs text-center text-muted-foreground">
+              Mengalami kendala? Hubungi{" "}
+              <a 
+                href="mailto:admin@akunstarter.com" 
+                className="text-primary hover:underline"
+              >
+                admin@akunstarter.com
+              </a>
+            </p>
+          </div>
         </CardContent>
       </Card>
     </div>
