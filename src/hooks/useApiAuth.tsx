@@ -4,6 +4,7 @@ interface User {
   id: string;
   username: string;
   email?: string;
+  role?: string;
 }
 
 interface AuthContextType {
@@ -73,10 +74,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       if (response.ok && data.success && data.token) {
         localStorage.setItem("authToken", data.token);
+        // Store user role for admin bypass functionality
+        if (data.user?.role) {
+          localStorage.setItem("userRole", data.user.role);
+        }
         setUser({ 
           id: data.user?.id || "1", 
           username: data.user?.username || username,
-          email: data.user?.email 
+          email: data.user?.email,
+          role: data.user?.role
         });
         return { success: true };
       } else {
@@ -96,6 +102,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logout = () => {
     localStorage.removeItem("authToken");
+    localStorage.removeItem("userRole");
     setUser(null);
   };
 

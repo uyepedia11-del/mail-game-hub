@@ -23,15 +23,26 @@ export function useInbox() {
       setError(null);
       
       const token = localStorage.getItem("authToken");
-      if (!token) {
+      const isAdmin = localStorage.getItem("userRole") === "admin";
+      
+      // Admin bypass - admins can access without token or with special admin token
+      if (!token && !isAdmin) {
         throw new Error("No authentication token found");
       }
 
+      const headers: Record<string, string> = {
+        'Content-Type': 'application/json',
+      };
+
+      // Add authorization header if token exists, or use admin bypass
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      } else if (isAdmin) {
+        headers['X-Admin-Access'] = 'true';
+      }
+
       const response = await fetch(`${API_BASE_URL}/inbox`, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
+        headers,
       });
 
       if (!response.ok) {

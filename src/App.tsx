@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useApiAuth";
 import Inbox from "./pages/Inbox";
 import Auth from "./pages/Auth";
+import AdminAccess from "./pages/AdminAccess";
 import Blog from "./pages/Blog";
 import Store from "./pages/Store";
 import Community from "./pages/Community";
@@ -23,6 +24,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Auth />} />
             <Route path="/login" element={<Auth />} />
+            <Route path="/admin" element={<AdminAccess />} />
             <Route path="/inbox" element={<Inbox />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/store" element={<Store />} />

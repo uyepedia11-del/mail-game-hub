@@ -177,6 +177,13 @@ export default function Auth() {
               >
                 Store
               </a>
+              <span className="text-muted-foreground">•</span>
+              <a 
+                href="/admin" 
+                className="text-sm text-orange-600 hover:text-orange-700 transition-colors"
+              >
+                Admin Access
+              </a>
             </div>
             <p className="text-xs text-center text-muted-foreground">
               Mengalami kendala? Hubungi{" "}
